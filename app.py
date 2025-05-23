@@ -11,17 +11,16 @@ model = joblib.load("xgboost_clv_model_final.pkl")
 # Home route
 @app.route("/")
 def home():
-    return "✅ CLV Prediction API is Running! Go to <a href='/form'>/form</a> to try it."
+    return "✅ CLV Prediction! Click <a href='/form'>/form</a> to try it."
 
 # HTML Form with simplified raw inputs
 @app.route("/form")
 def form():
     return render_template_string('''
-    <h2>CLV Prediction Form (Simplified)</h2>
+    <h2>CLV Prediction Form</h2>
     <form action="/predict" method="post">
         <label>Gender: <select name="gender"><option value="Male">Male</option><option value="Female">Female</option></select></label><br>
         <label>Senior Citizen: <select name="SeniorCitizen"><option value="0">No</option><option value="1">Yes</option></select></label><br>
-        <label>Partner: <select name="Partner"><option value="Yes">Yes</option><option value="No">No</option></select></label><br>
         <label>Dependents: <select name="Dependents"><option value="Yes">Yes</option><option value="No">No</option></select></label><br>
         <label>Tenure: <input name="tenure" type="number" required /></label><br>
         <label>Monthly Charges: <input name="MonthlyCharges" type="number" step="0.01" required /></label><br>
